@@ -1,0 +1,13 @@
+<form class="example-form" [formGroup]="userForm">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput placeholder="Email" value="">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input formControlName="password" matInput placeholder="Password" value="">
+  </mat-form-field>
+
+  <button (click)="signIn()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Sign in</button>
+</form>

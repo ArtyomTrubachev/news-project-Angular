@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {MainLayoutComponent} from "./shared/main-layout/main-layout.component";
+import {NewsComponent} from "./shared/news/news.component";
+import {LoginComponent} from "./shared/login/login.component";
+import {RegistrationComponent} from "./shared/registration/registration.component";
+import {AuthGuard} from "./shared/services/auth.guard";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', redirectTo: '/layout', pathMatch: 'full'},
+  {path: 'layout', component: MainLayoutComponent, children: [
+      {path: 'news', component: NewsComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent},
+      {path: 'registration', component: RegistrationComponent},
+    ]}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
