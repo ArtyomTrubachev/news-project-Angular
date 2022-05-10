@@ -1,18 +1,13 @@
 <div class="container">
   <mat-toolbar color="primary">
-    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <div class="containerTitle">
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <div class="textTitle">Добро пожаловать {{emailUser}}</div>
+    </div>
     <mat-menu #menu="matMenu">
       <button [routerLink]="'/layout/news'" mat-menu-item>News</button>
-      <button [routerLink]="'/layout/login'" mat-menu-item>Authorization</button>
-      <button [routerLink]="'/layout/registration'" mat-menu-item>Registration</button>
     </mat-menu>
   </mat-toolbar>
 
   <router-outlet></router-outlet>
-
-  <div class="example-button-container">
-    <button [routerLink]="'/layout'" mat-fab color="blue" aria-label="Example icon button with a home icon">
-      <mat-icon>home</mat-icon>
-    </button>
 </div>
-

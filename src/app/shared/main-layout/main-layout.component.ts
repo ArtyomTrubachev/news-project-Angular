@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-layout.component.sass']
 })
 export class MainLayoutComponent implements OnInit {
+  public emailUser: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.emailUser = localStorage.getItem('email');
   }
 
 }

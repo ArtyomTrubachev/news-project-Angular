@@ -3,6 +3,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {Subscription} from "rxjs";
 import {INews, NewsService} from "./services/news.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddNewsComponent} from "./add-news/add-news.component";
 
 
 @Component({
@@ -18,7 +20,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public newsService: NewsService) {
+  constructor(public newsService: NewsService, public dialog: MatDialog) {
    this.displayedColumns = ['id', 'title', 'country', 'link'];
    this.subscription = new Subscription();
   }
@@ -51,4 +53,16 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
+ public addNews(): void {
+    console.log('Новость добавлена');
+   const dialogRef = this.dialog.open(AddNewsComponent, {
+     width: '450px',
+     height: '450px',
+   });
+
+   dialogRef.afterClosed().subscribe(result => {
+     console.log('Модалка закрылась');
+     this.getNews();
+   });
+  }
 }

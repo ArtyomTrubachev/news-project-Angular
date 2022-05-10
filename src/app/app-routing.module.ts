@@ -7,11 +7,11 @@ import {RegistrationComponent} from "./shared/registration/registration.componen
 import {AuthGuard} from "./shared/services/auth.guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/layout', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {path: 'layout', component: MainLayoutComponent, children: [
       {path: 'news', component: NewsComponent, canActivate: [AuthGuard]},
-      {path: 'login', component: LoginComponent},
-      {path: 'registration', component: RegistrationComponent},
     ]}
 ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Subscription} from "rxjs";
@@ -9,14 +9,16 @@ import {Router} from "@angular/router";
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.sass']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
 
   public userForm: FormGroup;
   public errorMessage: string ='';
   private subscription: Subscription;
 
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+    this.subscription = new Subscription();
+  }
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -27,7 +29,7 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-  submit() {
+  public submit(): void {
     this.subscription = this.authService.registration(this.userForm.value).subscribe({
       next: (data) => {
       },
@@ -38,5 +40,9 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['/layout/login']);
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

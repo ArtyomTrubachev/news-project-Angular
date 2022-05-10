@@ -18,6 +18,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
+import { AddNewsComponent } from './shared/news/add-news/add-news.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     NewsComponent,
     MainLayoutComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddNewsComponent
   ],
     imports: [
         BrowserModule,
@@ -41,7 +44,8 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule
     ],
   providers: [],
   bootstrap: [AppComponent]

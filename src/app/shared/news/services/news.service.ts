@@ -23,5 +23,9 @@ export class NewsService {
   public getNews(): Observable<INews[]> {
     return this.http.get<INews[]>( `${environment.apiUrl}/news`);
   }
+
+  public addNews(news: INews): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/news`, news);
+  }
 }
 
