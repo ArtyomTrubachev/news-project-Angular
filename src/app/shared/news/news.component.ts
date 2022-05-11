@@ -14,20 +14,20 @@ import {AddNewsComponent} from "./add-news/add-news.component";
 })
 export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  public news: INews[];
+  public news: MatTableDataSource<INews>;
   public displayedColumns: string[];
   public subscription: Subscription;
+  public errorMessage: string;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
 
   constructor(public newsService: NewsService, public dialog: MatDialog) {
-   this.displayedColumns = ['id', 'title', 'country', 'link'];
+   this.displayedColumns = ['id', 'title', 'country', 'link', 'btnDelete'];
    this.subscription = new Subscription();
   }
 
-
   ngOnInit(): void {
-    /*this.getNews();*/
+    this.getNews();
   }
 
   ngAfterViewInit() {
@@ -41,9 +41,8 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   public getNews(): void {
     this.subscription = this.newsService.getNews().subscribe({
       next: (data) => {
-        console.log(data);
-        this.news = data;
-
+        this.news = new MatTableDataSource<INews>(data);
+        this.news.paginator = this.paginator;
       },
       error: (error) => {
         console.log(error.error)
@@ -56,7 +55,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
  public addNews(): void {
     console.log('Новость добавлена');
    const dialogRef = this.dialog.open(AddNewsComponent, {
-     width: '450px',
+     width: '650px',
      height: '450px',
    });
 
@@ -64,5 +63,19 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
      console.log('Модалка закрылась');
      this.getNews();
    });
+  }
+
+  public deleteNews(id: string): void {
+        this.subscription = this.newsService.deleteN(id).subscribe({
+          next: (data) => {
+          },
+          error: (error) => {
+            this.errorMessage = error.error.message;
+            alert(this.errorMessage);
+          },
+          complete: () => {
+            this.getNews();
+          }
+        })
   }
 }

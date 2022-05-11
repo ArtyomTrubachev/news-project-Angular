@@ -20,6 +20,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
 import { AddNewsComponent } from './shared/news/add-news/add-news.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatInputModule,
         MatIconModule,
         ReactiveFormsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatCardModule
     ],
   providers: [],
   bootstrap: [AppComponent]

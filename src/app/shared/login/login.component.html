@@ -1,15 +1,19 @@
-<div class="container">
-  <form class="example-form" [formGroup]="userForm">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input formControlName="email" matInput placeholder="Email" value="">
-  </mat-form-field>
+<div class="main-container">
+  <div class="container">
+    <mat-card class="title">Новостной портал</mat-card>
 
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Password</mat-label>
-    <input formControlName="password" matInput placeholder="Password" value="">
-  </mat-form-field>
+    <form class="example-form" [formGroup]="userForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email" value="">
+    </mat-form-field>
 
-  <button (click)="signIn()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Sign in</button>
-</form>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input formControlName="password" matInput placeholder="Password" value="">
+    </mat-form-field>
+
+    <button (click)="signIn()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Войти</button>
+  </form>
+  </div>
 </div>

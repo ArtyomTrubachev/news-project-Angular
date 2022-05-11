@@ -1,13 +1,15 @@
-<div class="container">
-  <mat-toolbar color="primary">
-    <div class="containerTitle">
-      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-      <div class="textTitle">Добро пожаловать {{emailUser}}</div>
-    </div>
-    <mat-menu #menu="matMenu">
-      <button [routerLink]="'/layout/news'" mat-menu-item>News</button>
-    </mat-menu>
-  </mat-toolbar>
-
-  <router-outlet></router-outlet>
+<div class="main-container">
+  <mat-card class="main-container__title title title-large ">Новостной портал</mat-card>
+  <div class="container">
+    <mat-toolbar color="primary" class="wrapper">
+      <div class="container__header-table">
+        <button mat-button [matMenuTriggerFor]="menu" class="header-table__button title">Меню</button>
+        <div class="header-table__hello title">Добро пожаловать {{emailUser}}</div>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button [routerLink]="'/layout/news'" mat-menu-item>News</button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
 </div>

@@ -27,5 +27,9 @@ export class NewsService {
   public addNews(news: INews): Observable<void> {
     return this.http.post<void>(`${environment.apiUrl}/news`, news);
   }
+
+  public deleteN(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/news/${id}`);
+  }
 }
 

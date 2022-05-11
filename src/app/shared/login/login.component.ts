@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.subscription = new Subscription();
+    document.body.style.background = '';
   }
 
   ngOnInit(): void {
