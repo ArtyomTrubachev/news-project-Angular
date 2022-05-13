@@ -18,13 +18,29 @@
 
       <ng-container matColumnDef="link">
         <th class="divTh4" mat-header-cell *matHeaderCellDef>link</th>
-        <td mat-cell  *matCellDef="let element" > {{element.link}} </td>
+        <td mat-cell  *matCellDef="let element">{{element.link}}</td>s
+      </ng-container>
+
+      <ng-container matColumnDef="btnChange">
+        <th class="divTh5" mat-header-cell *matHeaderCellDef>Change news</th>
+        <td mat-cell  *matCellDef="let element">
+          <button (click)="changeNews(element)" mat-stroked-button color="warn">Change</button>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="btnDelete">
-        <th class="divTh4" mat-header-cell *matHeaderCellDef>Delete news</th>
+        <th class="divTh5" mat-header-cell *matHeaderCellDef>Delete news</th>
         <td mat-cell  *matCellDef="let element">
           <button (click)="deleteNews(element.id)" mat-stroked-button color="warn">Delete</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="btnFavourite">
+        <th class="divTh6" mat-header-cell *matHeaderCellDef>Favourite news</th>
+        <td mat-cell  *matCellDef="let element">
+          <button class="btnFavourite" (click)="addToFavouriteNews(element); changStyleHeart($event.target)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
         </td>
       </ng-container>
 
@@ -33,8 +49,8 @@
     </table>
 
     <mat-paginator #paginator
-                   [pageSize] = "6"
-                   [pageSizeOptions]="[3, 6, 9]"
+                   [pageSize] = "5"
+                   [pageSizeOptions]="[5, 10, 15, 20]"
                    showFirstLastButtons
                    aria-label="Select page of periodic elements">
     </mat-paginator>

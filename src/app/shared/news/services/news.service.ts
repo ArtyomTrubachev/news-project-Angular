@@ -8,8 +8,10 @@ export interface INews {
   title: string;
   country:string;
   link: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+  email?: string | null;
+  newsId?: string;
 }
 
 @Injectable({
@@ -28,8 +30,22 @@ export class NewsService {
     return this.http.post<void>(`${environment.apiUrl}/news`, news);
   }
 
-  public deleteN(id: string): Observable<void> {
+  public deleteNews(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/news/${id}`);
   }
+
+  public editNews(news: INews): Observable<void> {
+    return this.http.put<void>(`${environment.apiUrl}/news/${news.id}`, news);
+  }
+
+  public addFavouriteNews(news: { newsId: any; email: string }): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/users/addNewsToUser`, news);
+  }
+
+  public getFavouriteNews(): Observable<any> {
+    let userEmail = localStorage.getItem('email');
+    return this.http.get<any>(`${environment.apiUrl}/users/${userEmail}`);
+  }
+
 }
 

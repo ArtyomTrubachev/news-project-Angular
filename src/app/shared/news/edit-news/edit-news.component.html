@@ -1,0 +1,23 @@
+<div class="container">
+  <form class="example-form" [formGroup]="userNewsForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <input formControlName="country" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Link</mat-label>
+      <input formControlName="link" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <textarea formControlName="title" matInput></textarea>
+    </mat-form-field>
+
+    <button (click)="submit()" mat-flat-button color="primary" [disabled]="userNewsForm.invalid">Изменить новость</button>
+    <div class="btnClose">
+      <button (click)="closeModal()" mat-flat-button color="primary">Закрыть форму</button>
+    </div>
+  </form>
+</div>

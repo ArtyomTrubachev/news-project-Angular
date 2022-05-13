@@ -21,6 +21,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { AddNewsComponent } from './shared/news/add-news/add-news.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCardModule} from "@angular/material/card";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { FavouriteNewsComponent } from './shared/news/favourite-news/favourite-news.component';
+import { EditNewsComponent } from './shared/news/edit-news/edit-news.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import {MatCardModule} from "@angular/material/card";
     MainLayoutComponent,
     LoginComponent,
     RegistrationComponent,
-    AddNewsComponent
+    AddNewsComponent,
+    FavouriteNewsComponent,
+    EditNewsComponent,
   ],
     imports: [
         BrowserModule,
@@ -47,7 +52,8 @@ import {MatCardModule} from "@angular/material/card";
         MatIconModule,
         ReactiveFormsModule,
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        MatButtonToggleModule
     ],
   providers: [],
   bootstrap: [AppComponent]

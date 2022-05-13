@@ -5,6 +5,7 @@ import {NewsComponent} from "./shared/news/news.component";
 import {LoginComponent} from "./shared/login/login.component";
 import {RegistrationComponent} from "./shared/registration/registration.component";
 import {AuthGuard} from "./shared/services/auth.guard";
+import {FavouriteNewsComponent} from "./shared/news/favourite-news/favourite-news.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'layout', component: MainLayoutComponent, children: [
       {path: 'news', component: NewsComponent, canActivate: [AuthGuard]},
-    ]}
+      {path: 'favnews', component: FavouriteNewsComponent},
+    ]},
 ];
 
 @NgModule({
