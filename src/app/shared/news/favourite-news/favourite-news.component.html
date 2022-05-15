@@ -4,7 +4,7 @@
     <mat-card-title>{{item['title']}}</mat-card-title>
     <mat-card-subtitle><a href="{{item['link']}}">{{item['link']}}</a></mat-card-subtitle>
     <mat-card-actions>
-      <button mat-button>Убрать новость из избранных</button>
+      <button (click)="deleteFavouriteNews(item['id'])" mat-button>Убрать новость из избранных</button>
     </mat-card-actions>
   </mat-card>
 </div>

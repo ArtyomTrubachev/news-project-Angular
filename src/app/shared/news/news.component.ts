@@ -19,6 +19,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   public displayedColumns: string[];
   public subscription: Subscription;
   public errorMessage: string;
+  public arrayFavNews: Array<number> = [];
 
   @ViewChild('paginator') paginator: MatPaginator;
 
@@ -29,6 +30,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.receiveFavouriteNews()
     this.getNews();
   }
 
@@ -54,7 +56,6 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
  public addNews(): void {
-    console.log('Новость добавлена');
    const dialogRef = this.dialog.open(AddNewsComponent, {
      width: '650px',
      height: '450px',
@@ -86,17 +87,34 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
         alert(this.errorMessage);
       },
       complete: () => {
-        this.getNews();
+        this.getNews()
       }
     }));
   }
 
   public addToFavouriteNews(element): void {
-    let dataForFavourServ = {
-      email: localStorage.getItem('email'),
-      newsId: element.id
+    if(this.check(element)) {
+      return;
     }
-    this.subscription.add(this.newsService.addFavouriteNews(dataForFavourServ).subscribe({
+      let dataForFavourServ = {
+        email: localStorage.getItem('email'),
+        newsId: element.id
+      }
+      this.subscription.add(this.newsService.addFavouriteNews(dataForFavourServ).subscribe({
+        next: (data) => {
+        },
+        error: (error) => {
+          this.errorMessage = error.error.message;
+          alert(this.errorMessage);
+        },
+        complete: () => {
+          this.getNews();
+        }
+      }))
+  }
+
+  public deleteFavouriteNews(id: string): void {
+    this.subscription.add(this.newsService.deleteFavouriteNews(id).subscribe({
       next: (data) => {
       },
       error: (error) => {
@@ -104,8 +122,9 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
         alert(this.errorMessage);
       },
       complete: () => {
+        this.getNews();
       }
-    }))
+    }));
   }
 
   public changStyleHeart(event) {
@@ -114,5 +133,29 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.renderer.addClass(event, 'btnFavourite-selected');
     }
+  }
+
+  public receiveFavouriteNews(): void {
+    this.subscription.add(this.newsService.getFavouriteNews().subscribe({
+      next: (data) => {
+        this.arrayFavNews = [];
+        data.news.forEach(item => {
+          this.arrayFavNews.push(item.id);
+          console.log(this.arrayFavNews);
+        })
+      },
+      error: (error) => {
+      },
+      complete: () => {
+      }
+    }));
+  }
+
+  public check(element): boolean {
+    if (this.arrayFavNews.includes(element.id)) {
+      return true;
+    }
+    else
+      return false;
   }
 }

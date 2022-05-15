@@ -13,7 +13,7 @@ export class FavouriteNewsComponent implements OnInit {
   public errorMessage: string;
   public dataFavNews: Array<string>
 
-  constructor(public newsServer: NewsService) {
+  constructor(public newsService: NewsService) {
     this.subscription = new Subscription();
   }
 
@@ -26,10 +26,9 @@ export class FavouriteNewsComponent implements OnInit {
   }
 
   public receiveFavouriteNews(): void {
-    this.subscription = this.newsServer.getFavouriteNews().subscribe({
+    this.subscription.add(this.newsService.getFavouriteNews().subscribe({
       next: (data) => {
         this.dataFavNews = data.news;
-        console.log(this.dataFavNews);
       },
       error: (error) => {
         this.errorMessage = error.error.message;
@@ -37,6 +36,20 @@ export class FavouriteNewsComponent implements OnInit {
       },
       complete: () => {
       }
-    })
+    }));
+  }
+
+  public deleteFavouriteNews(id: string): void {
+    this.subscription.add(this.newsService.deleteFavouriteNews(id).subscribe({
+      next: (data) => {
+      },
+      error: (error) => {
+        this.errorMessage = error.error.message;
+        alert(this.errorMessage);
+      },
+      complete: () => {
+        this.receiveFavouriteNews();
+      }
+    }));
   }
 }

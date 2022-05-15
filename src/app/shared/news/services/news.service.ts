@@ -47,5 +47,9 @@ export class NewsService {
     return this.http.get<any>(`${environment.apiUrl}/users/${userEmail}`);
   }
 
+  public deleteFavouriteNews(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/users/deleteMyNew/${id}`);
+  }
+
 }
 
