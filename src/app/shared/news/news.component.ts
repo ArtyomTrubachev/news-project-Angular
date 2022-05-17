@@ -6,6 +6,7 @@ import {INews, NewsService} from "./services/news.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddNewsComponent} from "./add-news/add-news.component";
 import {EditNewsComponent} from "./edit-news/edit-news.component";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   public subscription: Subscription;
   public errorMessage: string;
   public arrayFavNews: Array<number> = [];
+  public clicked: boolean = true;
 
   @ViewChild('paginator') paginator: MatPaginator;
 
@@ -30,7 +32,7 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.receiveFavouriteNews()
+    this.receiveFavouriteNews();
     this.getNews();
   }
 
@@ -84,7 +86,6 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: (error) => {
         this.errorMessage = error.error.message;
-        alert(this.errorMessage);
       },
       complete: () => {
         this.getNews()
@@ -92,25 +93,26 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
     }));
   }
 
-  public addToFavouriteNews(element): void {
-    if(this.check(element)) {
-      return;
+  public addToFavouriteNews(element, event): void {
+    if (this.check(element)) {
+      this.block(event);
     }
-      let dataForFavourServ = {
-        email: localStorage.getItem('email'),
-        newsId: element.id
+    else {
+    let dataForFavourServ = {
+      email: localStorage.getItem('email'),
+      newsId: element.id
+    }
+    this.subscription.add(this.newsService.addFavouriteNews(dataForFavourServ).subscribe({
+      next: (data) => {
+        this.changStyleHeart(event.target);
+      },
+      error: (error) => {
+        this.errorMessage = error.error.message;
+      },
+      complete: () => {
       }
-      this.subscription.add(this.newsService.addFavouriteNews(dataForFavourServ).subscribe({
-        next: (data) => {
-        },
-        error: (error) => {
-          this.errorMessage = error.error.message;
-          alert(this.errorMessage);
-        },
-        complete: () => {
-          this.getNews();
-        }
-      }))
+    }))
+    }
   }
 
   public deleteFavouriteNews(id: string): void {
@@ -119,7 +121,6 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: (error) => {
         this.errorMessage = error.error.message;
-        alert(this.errorMessage);
       },
       complete: () => {
         this.getNews();
@@ -141,7 +142,6 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.arrayFavNews = [];
         data.news.forEach(item => {
           this.arrayFavNews.push(item.id);
-          console.log(this.arrayFavNews);
         })
       },
       error: (error) => {
@@ -157,5 +157,9 @@ export class NewsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     else
       return false;
+  }
+
+  public block(event): void{
+    event.currentTarget.disabled = true;
   }
 }

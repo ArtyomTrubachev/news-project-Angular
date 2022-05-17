@@ -1,26 +1,26 @@
 <div class="main-container">
   <mat-card class="container">
     <mat-card class="container__title">
-      <div class="title">Вход</div>
+      <div class="title">Sign In</div>
     </mat-card>
 
-    <form class="example-form" [formGroup]="userForm">
+    <form appFormClick (clickForm) = clearErrorMessage() class="example-form" [formGroup]="userForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Email</mat-label>
-      <input formControlName="email" matInput placeholder="Email" value="">
+      <input class="form__input" formControlName="email" matInput placeholder="Email" value="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Password</mat-label>
-      <input formControlName="password" matInput placeholder="Password" value="">
+      <input class="form__input" formControlName="password" matInput placeholder="Password" type="password" value="">
     </mat-form-field>
-
-    <button class="btnForm" (click)="signIn()" mat-button color="primary" [disabled]="userForm.invalid">Войти</button>
+    <div *ngIf="errorMessage" class="divError">{{errorMessage}}</div>
+    <button class="btnForm" (click)="signIn()" mat-button color="primary" [disabled]="userForm.invalid">Sign In</button>
   </form>
 
-    <footer class="footer">
-      <div class="footer__title">У вас нет аккаунта?</div>
-      <a [routerLink]="'/registration'" class="footer__link">Зарегистрироваться прямо сейчас</a>
-    </footer>
+  <footer class="footer">
+    <div class="footer__title">Don’t have an account?</div>
+    <a [routerLink]="'/registration'" class="footer__link">Sign up now</a>
+  </footer>
   </mat-card>
 </div>

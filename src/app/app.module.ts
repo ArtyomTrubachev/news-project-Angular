@@ -24,6 +24,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { FavouriteNewsComponent } from './shared/news/favourite-news/favourite-news.component';
 import { EditNewsComponent } from './shared/news/edit-news/edit-news.component';
+import { FormClickDirective } from './shared/directives/form-click.directive';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { EditNewsComponent } from './shared/news/edit-news/edit-news.component';
     AddNewsComponent,
     FavouriteNewsComponent,
     EditNewsComponent,
+    FormClickDirective,
   ],
     imports: [
         BrowserModule,
@@ -53,7 +56,8 @@ import { EditNewsComponent } from './shared/news/edit-news/edit-news.component';
         ReactiveFormsModule,
         MatDialogModule,
         MatCardModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        NgxPaginationModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

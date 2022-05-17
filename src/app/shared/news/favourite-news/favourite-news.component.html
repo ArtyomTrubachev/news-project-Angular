@@ -1,10 +1,19 @@
-<div *ngFor="let item of dataFavNews" class="container">
-  <mat-card class="container-favNews">
-    <mat-card-title class="news-country">{{item['country']}}</mat-card-title>
-    <mat-card-title>{{item['title']}}</mat-card-title>
-    <mat-card-subtitle><a href="{{item['link']}}">{{item['link']}}</a></mat-card-subtitle>
-    <mat-card-actions>
-      <button (click)="deleteFavouriteNews(item['id'])" mat-button>Убрать новость из избранных</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="main-container">
+  <div *ngFor="let item of dataFavNews | paginate: { itemsPerPage: 3, currentPage: p }" class="container">
+    <mat-card class="container-favNews">
+      <mat-card-title class="news-country">{{item['country']}}</mat-card-title>
+      <mat-card-title>{{item['title']}}</mat-card-title>
+      <mat-card-subtitle><a href="{{item['link']}}">{{item['link']}}</a></mat-card-subtitle>
+      <mat-card-actions>
+        <button (click)="deleteFavouriteNews(item['id'])" mat-button>Remove from favourite news</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<div *ngIf="dataFavNews.length >= 1" class="divPag">
+  <pagination-controls  class="pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+<div *ngIf="dataFavNews.length < 1" class="divFootTitle">
+  <p class="footTitle">Sorry you don't have any favourite news items, please add to the news page</p>
 </div>

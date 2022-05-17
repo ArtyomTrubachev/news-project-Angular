@@ -36,13 +36,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.errorMessage = error.error.message;
-        alert(this.errorMessage);
       },
       complete: () => {
         localStorage.setItem('email', this.userForm.value.email);
         this.router.navigate(['/layout/news']);
       }
     })
+  }
+
+  public clearErrorMessage(): void {
+    if (this.errorMessage)
+      this.errorMessage = '';
   }
 
   ngOnDestroy() {

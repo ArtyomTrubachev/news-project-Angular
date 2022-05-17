@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {INews, NewsService} from "../services/news.service";
 import {Subscription} from "rxjs";
+import {NgxPaginationModule} from 'ngx-pagination';
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
@@ -11,7 +12,8 @@ import {MatTableDataSource} from "@angular/material/table";
 export class FavouriteNewsComponent implements OnInit {
   public subscription: Subscription;
   public errorMessage: string;
-  public dataFavNews: Array<string>
+  public dataFavNews: Array<string> = [];
+  public p: number = 1;
 
   constructor(public newsService: NewsService) {
     this.subscription = new Subscription();

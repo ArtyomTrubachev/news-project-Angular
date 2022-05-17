@@ -34,12 +34,17 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       next: (data) => {
       },
       error: (error) => {
-        this.errorMessage = error.error;
+        this.errorMessage = error.error.message;
       },
       complete: () => {
         this.router.navigate(['/login']);
       }
     })
+  }
+
+  public clearErrorMessage(): void {
+    if (this.errorMessage)
+      this.errorMessage = '';
   }
 
   ngOnDestroy() {

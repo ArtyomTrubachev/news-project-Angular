@@ -1,30 +1,35 @@
 <div class="main-container">
   <mat-card class="container">
     <mat-card class="container__title">
-      <div class="title">Регистрация</div>
+      <div class="title">Sign Up</div>
     </mat-card>
-  <form class="example-form" [formGroup]="userForm">
+  <form appFormClick (clickForm)="clearErrorMessage()" class="example-form" [formGroup]="userForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Name</mat-label>
-      <input formControlName="name" matInput placeholder="Name" value="">
+      <input class="form__input" formControlName="name" matInput placeholder="Name" value="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Second name</mat-label>
-      <input formControlName="secondName" matInput placeholder="Second name" value="">
+      <input class="form__input" formControlName="secondName" matInput placeholder="Second name" value="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Email</mat-label>
-      <input formControlName="email" matInput placeholder="Email" value="">
+      <input class="form__input" formControlName="email" matInput placeholder="Email" value="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Password</mat-label>
-      <input formControlName="password" matInput placeholder="Password" value="">
+      <input class="form__input" formControlName="password" matInput placeholder="Password" value="">
     </mat-form-field>
-
-    <button class="btnForm" (click)="submit()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Создать пользователя</button>
+    <div *ngIf="errorMessage" class="divError">{{errorMessage}}</div>
+    <button class="btnForm" (click)="submit()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Get Started</button>
   </form>
+
+    <footer class="footer">
+      <a [routerLink]="'/login'" class="footer__link">Return to the login page</a>
+    </footer>
+
   </mat-card>
 </div>

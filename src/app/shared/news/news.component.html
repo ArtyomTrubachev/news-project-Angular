@@ -38,7 +38,9 @@
       <ng-container matColumnDef="btnFavourite">
         <th class="divTh6" mat-header-cell *matHeaderCellDef>Favourite news</th>
         <td mat-cell  *matCellDef="let element">
-          <button class="btnFavourite" (click)="addToFavouriteNews(element); changStyleHeart($event.target)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+          <button class="btnFavourite" [ngClass]="{'btnFavourite-selected': !!check(element)}"
+
+                  (click)="addToFavouriteNews(element, $event); block($event)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
             <mat-icon>favorite</mat-icon>
           </button>
         </td>
@@ -50,20 +52,12 @@
 
     <mat-paginator #paginator
                    [pageSize] = "6"
-                   [pageSizeOptions]="[3, 6]"
+                   [pageSizeOptions]="[3, 6, 9]"
                    showFirstLastButtons
                    aria-label="Select page of periodic elements">
     </mat-paginator>
   </div>
 
   <div class="example-button-container">
-    <button class="btnAdd" (click)="addNews()" mat-raised-button color="primary">Добавить новость</button>
+    <button class="btnAdd" (click)="addNews()" mat-raised-button color="primary">Add news</button>
   </div>
-
-<!--
-<button class="btnFavourite" (click)="addToFavouriteNews(element); changStyleHeart($event.target)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-  <mat-icon>favorite</mat-icon>
-</button>
-
-changStyleHeart($event.target)
--->
