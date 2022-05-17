@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         this.errorMessage = error.error;
       },
       complete: () => {
-        this.router.navigate(['/layout/login']);
+        this.router.navigate(['/login']);
       }
     })
   }

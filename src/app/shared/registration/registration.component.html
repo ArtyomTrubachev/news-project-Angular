@@ -1,5 +1,8 @@
 <div class="main-container">
-  <mat-card class="title">Новостной портал</mat-card>
+  <mat-card class="container">
+    <mat-card class="container__title">
+      <div class="title">Регистрация</div>
+    </mat-card>
   <form class="example-form" [formGroup]="userForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Name</mat-label>
@@ -21,6 +24,7 @@
       <input formControlName="password" matInput placeholder="Password" value="">
     </mat-form-field>
 
-    <button (click)="submit()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Создать пользователя</button>
+    <button class="btnForm" (click)="submit()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Создать пользователя</button>
   </form>
+  </mat-card>
 </div>

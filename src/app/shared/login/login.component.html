@@ -1,6 +1,8 @@
 <div class="main-container">
-  <div class="container">
-    <mat-card class="title">Новостной портал</mat-card>
+  <mat-card class="container">
+    <mat-card class="container__title">
+      <div class="title">Вход</div>
+    </mat-card>
 
     <form class="example-form" [formGroup]="userForm">
     <mat-form-field class="example-full-width" appearance="fill">
@@ -13,7 +15,12 @@
       <input formControlName="password" matInput placeholder="Password" value="">
     </mat-form-field>
 
-    <button (click)="signIn()" mat-stroked-button color="warn" [disabled]="userForm.invalid">Войти</button>
+    <button class="btnForm" (click)="signIn()" mat-button color="primary" [disabled]="userForm.invalid">Войти</button>
   </form>
-  </div>
+
+    <footer class="footer">
+      <div class="footer__title">У вас нет аккаунта?</div>
+      <a [routerLink]="'/registration'" class="footer__link">Зарегистрироваться прямо сейчас</a>
+    </footer>
+  </mat-card>
 </div>

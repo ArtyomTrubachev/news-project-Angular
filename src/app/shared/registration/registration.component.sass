@@ -1,24 +1,46 @@
 .main-container
   box-sizing: border-box
-  padding-top: 30px
-  max-width: 1300px
+  max-width: 600px
   margin: 0 auto
   height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+
+.container
+  min-height: 550px
+  width: 100%
+  padding: 0
+
+.container__title
+  background-color: #57b846
+  height: 100px
+  display: flex
+  justify-content: center
+  align-items: center
 
 .title
-  text-align: center
   font-family: 'Russo One', sans-serif
   font-weight: 400
   font-size: 40px
-  background: rgba(183, 239, 15, 0.44)
+  color: white
 
 .example-form
-  width: 100%
-  margin-top: 30px
+  padding: 50px 35px
   display: flex
   flex-direction: column
 
+.btnForm
+  margin-top: 20px
+  color: white
+  background-color: #57b846
+  transition: all .4s
 
+.btnForm:hover
+  background-color: #408534
+
+.btnForm.mat-button-disabled
+  color: white
 
 
 

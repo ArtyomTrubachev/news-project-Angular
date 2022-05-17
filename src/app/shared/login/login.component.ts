@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       },
       complete: () => {
         localStorage.setItem('email', this.userForm.value.email);
-        this.router.navigate(['/layout']);
+        this.router.navigate(['/layout/news']);
       }
     })
   }

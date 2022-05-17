@@ -7,8 +7,9 @@
         <div class="header-table__hello title">Добро пожаловать {{emailUser}}</div>
       </div>
       <mat-menu #menu="matMenu">
-        <button [routerLink]="'/layout/news'" mat-menu-item>News</button>
-        <button [routerLink]="'/layout/favnews'" mat-menu-item>Favourite news</button>
+        <button [routerLink]="'/layout/news'" mat-menu-item>Новости</button>
+        <button [routerLink]="'/layout/favnews'" mat-menu-item>Избранные новости</button>
+        <button (click)="logOut()" [routerLink]="'/login'" mat-menu-item>Выйти из аккаунта</button>
       </mat-menu>
     </mat-toolbar>
     <router-outlet></router-outlet>

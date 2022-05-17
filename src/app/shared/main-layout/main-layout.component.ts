@@ -14,4 +14,8 @@ export class MainLayoutComponent implements OnInit {
     this.emailUser = localStorage.getItem('email');
   }
 
+  public logOut() {
+    localStorage.clear();
+  }
+
 }
